@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\AddressBook;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\AbstractQuery;
 
 /**
  * @method AddressBook|null find($id, $lockMode = null, $lockVersion = null)
@@ -18,33 +19,32 @@ class AddressBookRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, AddressBook::class);
     }
-
-    // /**
-    //  * @return AddressBook[] Returns an array of AddressBook objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    
+    
+    /**
+     * 
+     * {@inheritDoc}
+     * @see \Doctrine\ORM\EntityRepository::findAll()
+     */
+    public function findAll()
     {
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('a.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+    	return $this->createQueryBuilder('a')
+    	->getQuery()
+    	->getArrayResult();
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?AddressBook
+    
+    /**
+     * 
+     * {@inheritDoc}
+     * @see \Doctrine\ORM\EntityRepository::find()
+     */
+    public function find($id, $lockMode = null, $lockVersion = null)
     {
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
+    	$data = $this->createQueryBuilder('a')->andWhere('a.id=:id')
+    	->setParameter('id', $id)
+    	->getQuery()
+    	->getResult(AbstractQuery::HYDRATE_ARRAY);
+    	
+    	return empty($data)?[]:reset($data);
     }
-    */
 }

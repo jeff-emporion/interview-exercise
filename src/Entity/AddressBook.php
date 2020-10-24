@@ -2,13 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\AddressBookRepository;
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=AddressBookRepository::class)
+ * @ORM\Entity(repositoryClass="App\Repository\AddressBookRepository")
  */
 class AddressBook
 {
@@ -25,7 +23,7 @@ class AddressBook
     private $title;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime", nullable=true, options={"default": "CURRENT_TIMESTAMP"})
      */
     private $create_date;
 
@@ -33,11 +31,6 @@ class AddressBook
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $notes;
-
-    /**
-     * @ORM\ManyToMany(targetEntity=Address::class, mappedBy="address_book")
-     */
-    private $addresses;
 
     public function __construct()
     {
@@ -81,33 +74,6 @@ class AddressBook
     public function setNotes(?string $notes): self
     {
         $this->notes = $notes;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Address[]
-     */
-    public function getAddresses(): Collection
-    {
-        return $this->addresses;
-    }
-
-    public function addAddress(Address $address): self
-    {
-        if (!$this->addresses->contains($address)) {
-            $this->addresses[] = $address;
-            $address->addAddressBook($this);
-        }
-
-        return $this;
-    }
-
-    public function removeAddress(Address $address): self
-    {
-        if ($this->addresses->removeElement($address)) {
-            $address->removeAddressBook($this);
-        }
 
         return $this;
     }
