@@ -9,4 +9,3 @@ Requeriments:
   - After solution will be ready, make Pull request to this repository
   
   Good Luck!
-  
