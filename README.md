@@ -1,6 +1,6 @@
 # Address book exercise
 
-Please implement RESTful API for adressbook management.
+Please implement RESTful API for adressbook(persons, their contacts and addresses) management.
 Requeriments:
   - API should have at least two resource management endpoinds
   - Data should be persisted to database
