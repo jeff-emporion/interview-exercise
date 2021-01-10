@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PhoneType index{% endblock %}
+
+{% block body %}
+    <h1>PhoneType index</h1>
+    <div class="row">
+        <div class="offset-9 col-3 text-right">
+            <a href="{{ path('person_index') }}">Person list</a>
+        </div>
+    </div>
+    <table class="table table-sm table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>PhoneNumbers</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {# @var phone_type \App\Entity\PhoneType #}
+        {% for phone_type in phone_types %}
+            <tr>
+                <td>{{ phone_type.id }}</td>
+                <td>{{ phone_type.name }}</td>
+                <td>{{ phone_type.phones|length }}</td>
+                <td class="text-right">
+                    <a class="btn btn-sm btn-info" href="{{ path('phone_type_edit', {'id': phone_type.id}) }}">edit</a>
+                    <form method="post" class="d-inline" action="{{ path('phone_type_delete', {'id': phone_type.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ phone_type.id) }}">
+                        <button class="btn btn-sm btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('phone_type_new') }}" class="btn btn-lg btn-primary">Create new</a>
+{% endblock %}

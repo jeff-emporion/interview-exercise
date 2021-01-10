@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% set pageTitle = 'Edit "' ~ person.firstname ~ ' ' ~ person.lastname ~ '"' %}
+
+{% block title %}{{ pageTitle }}{% endblock %}
+
+{% block body %}
+    <h1>{{ pageTitle }}</h1>
+    {{ include('person/_form.html.twig', {'button_label': 'Update', 'isFormEnabled': isFormEnabled}) }}
+    <a href="{{ path('person_index') }}" class="btn btn-secondary float-left">back to list</a>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ include('person/js.html.twig') }}
+{% endblock %}
