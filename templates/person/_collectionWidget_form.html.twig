@@ -1,0 +1,25 @@
+<div>
+    {{ form_label(collection) }}
+    {{ form_errors(collection) }}
+    <ul
+        id="{{ collection.vars.name }}-fields-list"
+        data-prototype="{{ form_widget(collection.vars.prototype)|e }}"
+        data-widget-tags="{{ '<li></li>'|e }}"
+        data-widget-counter="{{ collection|length }}"
+        style="padding-left: 30px;"
+    >
+        {% for singleField in collection %}
+            <li>
+                {{ form_errors(singleField) }}
+                {{ form_widget(singleField) }}
+            </li>
+        {% endfor %}
+    </ul>
+    <a
+        href="javascript:"
+        class="add-another-collection-widget"
+        data-list-selector="#{{ collection.vars.name }}-fields-list"
+    >
+        Add another
+    </a>
+</div>

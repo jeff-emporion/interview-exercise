@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New PhoneType{% endblock %}
+
+{% block body %}
+    <h1>Create new PhoneType</h1>
+
+    {{ include('phone_type/_form.html.twig') }}
+
+    <a href="{{ path('phone_type_index') }}" class="btn btn-secondary float-left">back to list</a>
+{% endblock %}
