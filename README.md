@@ -1,53 +1,30 @@
 # Address book
 
-## Requirements
+### Run
+  - `docker-compose up`
+  - Test (PHPStorm only) by right clicking on tests/main.http and `Run all`
+
+### Test `PHPStorm only`
+  - Right click on any `tests/*.http` file
+  - Press `Run with` and choose `docker`
+
+### Requirements
   - Implement Address book management - persons, their contacts and addresses
   - REST API with at least 2 endpoints
   - Database
   - Symfony
   - **When done**, create PR to https://github.com/jeff-emporion/interview-exercise
 
-## Design
-
 ### Assumptions
-- We are making PoC
-- No authorisation required
-- Person has many Contacts, and Contact has many types of fields(email, work phone, personal phone, etc)
-- Because it's a PoC, we're going to do testing with PHPStorm HTTPClient
+  - We are making PoC
+  - No authorisation required
+  - Person has many Contacts, and Contact has many types of fields(email, work phone, personal phone, etc)
+  - Because it's a PoC, we're going to do testing with PHPStorm HTTPClient
 
-### Entities
-  - Person
-    - id
-    - name
-    - contacts oneToMany(Contact)
-    - createdAt
-    - updatedAt
-  - Contact
-    - id
-    - name
-    - person manyToOne(Person)
-    - fields oneToMany(Field)
-    - createdAt
-    - updatedAt
-  - Field
-    - id 
-    - value
-    - createdAt
-    - updatedAt
-  - EmailField: Field
-  - PhoneField: Field
-  - NoteField: Field
-  - AddressField: Field
-    - country
-    - city
-    - postCode
-    - value - for address, no validation
+### ToDo's or possible improvements
+  - Move Controller to some kind of generic handler
+  - Project probably is database agnostic?
+  - Fine tune serializer DateTime and etc.
 
-### Todo (for now)
-  - PHP 8.1
-  - Symfony 6
-  - Doctrine with migrations
-  - docker-compose.yml (maybe there is dedicated nice image for symfony 6 + docker + db)
-  - HTTPClient tests
-  - MySQL8/SQLite
-  - *Show-off something, maybe RoadRunner or OpenSwoole http workers*
+### Resources
+  - https://github.com/dunglas/symfony-docker

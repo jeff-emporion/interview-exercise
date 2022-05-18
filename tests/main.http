@@ -1,0 +1,53 @@
+### Works?
+GET https://localhost
+Accept: application/json
+
+### Create person
+POST https://localhost/person
+Content-Type: application/json
+
+{
+  "name": "Petras"
+}
+
+### Update person
+PUT https://localhost/person/1
+Content-Type: application/json
+
+{
+  "name": "Jonas"
+}
+
+### View person
+GET https://localhost/person/1
+Content-Type: application/json
+
+### Create contact
+POST https://localhost/contact
+Content-Type: application/json
+
+{
+  "person": 1,
+  "name": "Zmona"
+}
+
+### Update contact
+PUT https://localhost/contact/1
+Content-Type: application/json
+
+{
+  "name": "Vyras"
+}
+
+### View contact
+GET https://localhost/contact/1
+Content-Type: application/json
+
+### Create field email
+POST https://localhost/field/email
+Content-Type: application/json
+
+{
+  "contact": 1,
+  "value": "email@email.com"
+}
