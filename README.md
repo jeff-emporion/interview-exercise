@@ -4,10 +4,6 @@
   - `docker-compose up`
   - Test (PHPStorm only) by right clicking on tests/main.http and `Run all`
 
-### Test `PHPStorm only`
-  - Right click on any `tests/*.http` file
-  - Press `Run with` and choose `docker`
-
 ### Requirements
   - Implement Address book management - persons, their contacts and addresses
   - REST API with at least 2 endpoints
